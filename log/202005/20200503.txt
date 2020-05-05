@@ -1,0 +1,145 @@
+＊ CLI toolとは
+マウスなどで操作する普通のアプリケーションのことをGUI(グラフィカルユーザーインターフェース)と呼びます。一方テキストのみ、コマンドを入力して操作するアプリケーションのことをCUI(キャラクターユーザーインターフェース)
+このCUIアプリケーションのことをコマンドラインツールとも呼びます。
+Windowsでは通常 MS-DOSから実行します。
+
+ref
+- https://wa3.i-3-i.info/word13504.html
+- http://www.xucker.jpn.org/keyword/commandline.html
+
+=> 世のツールの多くは、CUIでの操作を可能にする方針が進んでいる？スクリプト記述により、自動化などを行うためか？
+
+
+＊CLIツールを作る方法
+
+ref
+- https://deeeet.com/writing/2014/08/27/cli-reference/
+- http://yapcasia.org/2014/talk/show/b49cc53a-027b-11e4-9357-07b16aeab6a4
+
+ref
+- https://youtu.be/M8jfKWvz15A
+
+良いCLIと悪いCLIがある
+その差：単純なこと
+#1 １つのことに集中している
+- unix 思想
+小さいものは美しい
+２つ以上のことをやろうとするだけで複雑性は増す
+
+#2 直感的に使える
+- UI/UX
+optionにshort,long ortionまで用意する！
+＝＞　
+GNU：標準インターフェイスを参照
+
+(1) 最もやりたいことを最もかんたんに
+オプションが必要ならshort optionも準備する
+
+(2) デフォルトで破壊的操作をしない
+Long option を準備する
+
+(3)対話型インターフェイスを避ける
+自動化を妨げる
+
+#3 他のツールと連携できる
+他のスクリプト（shellなど）から呼び出される
+
+#4 利用を助けてくれる
+ドキュメントはusageが存在しないツールは誰も使いたくない
+
+readme => usage =>  man
+
+#5 適切なデフォルト値を持ち設定もできる
+ユーザーに無駄な操作をさせない
+
+#6 苦痛なくインストールできる
+対象（OS別）のユーザーにあった
+
+#7 すぐに改修できる
+環境オプションを容易　-debug
+
+#1 どんなツールを作るのか
+ex.
+- 複雑な作業を自動化したい
+- あるタスクの生産性を高めたい
+- APIのCLIクライアント欲しい
+
+いきなり複雑なことをしない
+
+#2 言語選択
+ruby => gem 
+
+#3 README.md を書く
+codeを書く前に書く！
+- 名前を考える
+- CLIツールが何をするものかを考える
+- CLIツールのインターフェース（使い方）を考える
+
+自分がなにを作りたいのか整理してから始められる！
+ユーザー視点でプロダクトを作製できる
+
+ NAME (command 名)
+頻度が高いなら、なるべく短い名前をつける　頻度が低いなら説明的な名前をつける
+==================================
+## Description
+これはどんなツールなのか
+ひとつのことに集中している
+
+## Usage
+インターフェースの定義
+直感的に使える
+ユーザーの視点で最もやらせたいことを
+最もかんたんにできるように
+
+## VS.
+比較　ほかのツールとの比較
+似たツールと比較して、なにが優れているのか（市場調査が必要）
+全く同じツールを作ることは無意味
+
+＊＊バッジ
+バッジの準備
+Cl as a service の設定
+はじめからテスト環境を準備する
+テスト結果をユーザに見せ続けることでテストを書くモチベーションを保ち続ける
+
+#4 高速に
+プロトタイプをつくる（DEMO）
+
+＊ 目標物
+(1)github/hub
+お馴染みのやつ。
+プルリクエストやカレントディレクトリのgithubページを開いたりすると言った動作をCLIから行えます。
+GitHubやGitHub Enterpriseを使ってるなるなら入れておくべきかなって思います。
+ソースリーディングだけでもgit clone {user}/{repo}でcloneできたりするのでとても便利。
+
+ref
+- https://qiita.com/ryuichi1208/items/45fd2cdd865097a7ad3d
+- https://qiita.com/schktjm/items/946452e9d0760b1bfc5f
+- https://github.com/github/hub
+
+(2)AWS コマンドラインインターフェイス
+- AWS コマンドラインインターフェース (CLI) は、AWS サービスを管理するための統合ツールです。ダウンロードおよび設定用の単一のツールのみを使用して、コマンドラインから複数の AWS サービスを制御し、スクリプトを使用してこれらを自動化することができます。
+
+ref
+- https://aws.amazon.com/jp/cli/
+
+(3)GitHub 公式　ローカルCUIでリモートのGitHubの操作を行えるようにしたもの
+
+ref
+- https://japan.zdnet.com/article/35149382/
+- https://github.blog/2020-02-12-supercharge-your-command-line-experience-github-cli-is-now-in-beta/
+
+
+＊Ruby で CLI toolを作成する
+
+ref
+- https://qiita.com/akisame338/items/92379addeb1a17468498
+- https://qiita.com/rosylilly/items/d7f9667f3998cfc420d1
+- http://itexp.hateblo.jp/entry/2015/02/21/225234
+- http://rikuga.me/2018/03/17/how-to-create-gem-using-thor/
+- https://deeeet.com/writing/2014/03/17/gem-man/
+- http://tbpgr.hatenablog.com/entry/2016/11/05/052200
+- https://railsguides.jp/command_line.html
+- https://morizyun.github.io/blog/thor-shell-command-easy-ruby-gem/
+- https://garasubo.github.io/hexo/2020/02/26/rust-cli.html
+- https://www.slideshare.net/nixiesan/thor-16993241
